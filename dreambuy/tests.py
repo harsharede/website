@@ -1,26 +1,34 @@
-import datetime
-def prdtcode():
-    import datetime
-    nums =[1,2,3,4,5,6,7,8,9,0]
-    alphs = ['a','b','c','d','e','f','g','h','i','j']
-    now = datetime.datetime.now()
-    datestr = str(now.year)
-    if now.month < 10:
-        datestr += '0'
-    datestr += str(now.month)
-    if now.day < 10:
-        datestr += '0'
-    datestr += str(now.day)
-    if now.hour < 10:
-        datestr += '0'
-    datestr += str(now.hour)
-    if now.minute < 10:
-        datestr += '0'
-    datestr += str(now.minute)
-    datestrc =''
-    # print (datestr)
-    for i in  (datestr):
-        datestrc += (alphs[int(i)-1])
-    return (datestrc)
+#!/usr/bin/python
 
-print(prdtcode())
+import sqlite3, os
+from sqlite3 import Error
+
+
+def create_connection(db_file):
+    """ create a database connection to the SQLite database
+        specified by the db_file
+    :param db_file: database file
+    :return: Connection object or None
+    """
+    try:
+        conn = sqlite3.connect(db_file)
+        return conn
+    except Error as e:
+        print(e)
+
+    return None
+
+
+def select_task_by_priority():
+    resultdic = {}
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    database = BASE_DIR+"\db.sqlite3"
+    print(database)
+    conn = create_connection(database)
+    cur = conn.cursor()
+    cur.execute("SELECT Product_id, Product_name, Product_bids,Product_Price FROM dreambuy_product")
+    row = cur.fetchall()
+    for i in row:
+        resultdic[i[0]] = (i[2]/(i[3]/500))*100
+    return resultdic
+

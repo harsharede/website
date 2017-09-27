@@ -41,7 +41,9 @@ def get_Product_list(request):
 #         return render(request,"dreambuy/index.html",context)
 
 def index(request):
-    prdt = Product.objects.all()
+    prdt = Product.objects.all().order_by('Product_bid_percent').reverse()
+    updateMAX_bid()
+    updaterank()
     context = {'prdt': prdt}
     return render(request, "dreambuy/index.html", context)
 
@@ -62,6 +64,29 @@ def detail(request, prdt_id):
     resonse = render(request, 'dreambuy/details.html', {'prdt': prdt})
     return render(request, 'dreambuy/details.html', {'prdt': prdt})
 
+def updateMAX_bid ():
+    from . import tests
+    idslist = tests.select_task_by_priority()
+    for prdt_id in idslist.keys():
+        # print(prdt_id)
+        try:
+            cur_prdt = Product.objects.get(Product_id=prdt_id)
+            cur_prdt.Product_MAX_bid = int(cur_prdt.Product_price/500)
+            cur_prdt.save()
+        except Exception as e:
+            print(e)
+
+def updaterank ():
+    from . import tests
+    idslist = tests.select_task_by_priority()
+    for prdt_id in idslist.keys():
+        print(prdt_id)
+        try:
+            cur_prdt = Product.objects.get(Product_id=prdt_id)
+            cur_prdt.Product_bid_percent = int((cur_prdt.Product_bids / cur_prdt.Product_MAX_bid)*100)
+            cur_prdt.save()
+        except Exception as e:
+            print(e)
 
 def place_bid(request, prdt_id):
     if not request.user.is_authenticated():

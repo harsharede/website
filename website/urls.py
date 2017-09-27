@@ -46,5 +46,8 @@ urlpatterns = [
     url(r'^api_reg/$',views.CreateAPIView.as_view(),name='user'),
     # url (r'^Products_listapi/$',views.ProductViewSet,name='ProductViewSet')
     url(r'pymnt/$', views.pymnt, name='pymnt'),
+    url(r'^login_user/$', views.login_user, name='login_user'),
+    url(r'^register/$', views.register, name='register'),
+    url (r'FAQs/$',views.FAQs)
 ]
 
