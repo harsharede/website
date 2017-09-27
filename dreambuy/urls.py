@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'pymnt_success/',views.pymnt_success, name='pymntsuccess'),
     # url(r'pymnt/(?P<slug>[a-zA-Z0-9_.-]+)/$', views.pymnt, name='pymnt'),
     url(r'pymnt/(?P<slug>\w+)$', views.pymnt, name='pymnt'),
+    url (r'FAQs/$',views.FAQs)
 ]
 
 

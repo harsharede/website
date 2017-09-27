@@ -45,6 +45,9 @@ def index(request):
     context = {'prdt': prdt}
     return render(request, "dreambuy/index.html", context)
 
+def FAQs(request):
+    return render(request, 'dreambuy/FAQs.html',{})
+
 # def detail(request, prdt_id):
 #     if not request.user.is_authenticated():
 #         return render(request, 'dreambuy/login.html')
