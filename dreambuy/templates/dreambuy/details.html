@@ -2,140 +2,139 @@
 {% block body %}
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4 col-md-3">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="tumbs">
+<div class="row">
+<div class="col-sm-4 col-md-3">
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="tumbs">
+
+{% ifequal prdt.Product_bids prdt.Product_max_bids %}
+<h1><small>{{ prdt.Product_name }} </small></h1>
+<p><font color="red"> Maximum bid reached, Biding closed for now. </font> </p>
+{% else %}
+<h1><small>{{ prdt.Product_name }}</small></h1>
+{% endifequal %}
+
+<a href="/dreambuy/{{prdt.Product_id}}/">
+<div class="img-with-text">
+{% if prdt.Product_image %}
+<img src="{{ prdt.Product_image }}" class="img-responsive">
+{% else %}
+<h3>No image to display</h3>
+{% endif %}
 
 
-                        {% ifequal prdt.Product_bids prdt.Product_max_bids %}
-                        <h1><small>{{ prdt.Product_name }} </small></h1>
-                        <p><font color="red"> Maximum bid reached, Biding closed for now. </font> </p>
-                    {% else %}
-                         <h1><small>{{ prdt.Product_name }}</small></h1>
-                     {% endifequal %}
-
-                    <a href="/dreambuy/{{prdt.Product_id}}/">
-                        <div class="img-with-text">
-                        {% if prdt.Product_image %}
-                            <img src="{{ prdt.Product_image }}" class="img-responsive">
-                        {% else %}
-                            <h3>No image to display</h3>
-                        {% endif %}
+</div>
+</a>
 
 
-                        </div>
-                        </a>
+<div class="imgContainer">
+<img src="{{ prdt.Product_image1 }}" class="thumbnail" height="50" width="50">
+</div>
 
+<div class="imgContainer">
+<img src="{{ prdt.Product_image2 }}" class="thumbnail" height="50" width="50">
+</div>
 
-                            <div class="imgContainer">
-                            <img src="{{ prdt.Product_image1 }}" class="thumbnail" height="50" width="50">
-                            </div>
+<div class="imgContainer">
+<img src="{{ prdt.Product_image3 }}" class="thumbnail" height="50" width="50">
+</div>
 
-                            <div class="imgContainer">
-                            <img src="{{ prdt.Product_image2 }}" class="thumbnail" height="50" width="50">
-                            </div>
+<div class="imgContainer">
+<img src="{{ prdt.Product_image4 }}" class="thumbnail" height="50" width="50">
+</div>
 
-                            <div class="imgContainer">
-                            <img src="{{ prdt.Product_image3 }}" class="thumbnail" height="50" width="50">
-                            </div>
+<div class="imgContainer">
+<img src="{{ prdt.Product_image5 }}" class="thumbnail" height="50" width="50">
+</div>
 
-                            <div class="imgContainer">
-                            <img src="{{ prdt.Product_image4 }}" class="thumbnail" height="50" width="50">
-                            </div>
-
-                            <div class="imgContainer">
-                            <img src="{{ prdt.Product_image5 }}" class="thumbnail" height="50" width="50">
-                            </div>
-
-                            </div>
-                            </div>
-
-
-
-
-
-                    <div class="details_div">
-
-                    {% ifequal prdt.Product_bids prdt.Product_max_bids %}
-                        <a href=# class="btn btn-warning" style="float: right;"  role="button">Bid</a>
-                    {% else %}
-                         <a href=# class="btn button" style="float: right;"  role="button" onclick='overlay()'>Bid</a>
-                     {% endifequal %}
+</div>
+</div>
 
 
 
 
 
-                    <p>by <font size="2" color="blue">{{prdt.Product_brand}}</font></p>
+<div class="details_div">
 
-                    <p>M.R.P: <font size="2" ><strong>{{prdt.Product_price}}</strong></font></p>
+{% ifequal prdt.Product_bids prdt.Product_max_bids %}
+<a href=# class="btn btn-warning" style="float: right;"  role="button">Bid</a>
+{% else %}
+<a href=# class="btn button" style="float: right;"  role="button" onclick='overlay()'>Bid</a>
+{% endifequal %}
 
-                    <p>Bids: <font size="2" color="Green"><strong>{{prdt.Product_bids}}</strong></font></p>
-                    <p>Max Bids: <font size="2" color="Red"><strong>{{prdt.Product_max_bids}}</strong></font></p>
-                    <p><strong>Details:</strong> {{ prdt.Product_details }}</p>
 
-            </div>
-            </div>
-            </div>
 
-        </div>
-        </div>
+
+
+<p>by <font size="2" color="blue">{{prdt.Product_brand}}</font></p>
+
+<p>M.R.P: <font size="2" ><strong>{{prdt.Product_price}}</strong></font></p>
+
+<p>Bids: <font size="2" color="Green"><strong>{{prdt.Product_bids}}</strong></font></p>
+<p>Max Bids: <font size="2" color="Red"><strong>{{prdt.Product_max_bids}}</strong></font></p>
+<p><strong>Details:</strong> {{ prdt.Product_details }}</p>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
 
 
 
 <div class="overlay overlay div" id="overlay">
- <div>
-     <a href='#' onclick='overlay()' style="float: right;">[X]</a>
-    {% if prdt.Product_image %}
-        <img src="{{ prdt.Product_image }}" class="img-responsive">
-    {% else %}
-        <h3>No image to display</h3>
-    {% endif %}
+<div>
+<a href='#' onclick='overlay()' style="float: right;">[X]</a>
+{% if prdt.Product_image %}
+<img src="{{ prdt.Product_image }}" class="img-responsive">
+{% else %}
+<h3>No image to display</h3>
+{% endif %}
 
-    {% ifequal prdt.Product_bids prdt.Product_max_bids %}
-        <h5>Max bids reached, Please try next time.</h5>
-    {% else %}
-         <h3>You can bid now</h3>
-            <p>Please select number of bids you to place.</p>
+{% ifequal prdt.Product_bids prdt.Product_max_bids %}
+<h5>Max bids reached, Please try next time.</h5>
+{% else %}
+<h3>You can bid now</h3>
+<p>Please select number of bids you to place.</p>
 
-    {% endifequal %}
+{% endifequal %}
 
 
 <form method="POST" action="/dreambuy/bid/{{prdt.Product_id}}">{% csrf_token %}
 <table>
-  <tr>
-      <th style="padding:20px;">
-    <th><span class="input-group-btn">
-              <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quote_bids">
-                <span class="glyphicon glyphicon-minus"></span>
-              </button>
-          </span></th>
-    <th>
+<tr>
+<th style="padding:20px;">
+<th><span class="input-group-btn">
+<button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="quote_bids">
+<span class="glyphicon glyphicon-minus"></span>
+</button>
+</span></th>
+<th>
 
 
-        <input type="text" name="quote_bids" class="form-control input-number" style="width: 50px;" value="1"  min="1" max={{prdt.Product_MAX_bids}} />
+<input type="text" name="quote_bids" class="form-control input-number" style="width: 50px;" value="1"  min="1" max={{prdt.Product_MAX_bids}} />
 
 
-    </th>
-    <th><span class="input-group-btn">
-              <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quote_bids">
-                  <span class="glyphicon glyphicon-plus"></span>
-              </button>
-          </span>
+</th>
+<th><span class="input-group-btn">
+<button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quote_bids">
+<span class="glyphicon glyphicon-plus"></span>
+</button>
+</span>
 </th>
 
-      <th style="padding:10px;">
+<th style="padding:10px;">
 
-      </th>
+</th>
 
-      <th>
-            <input type="hidden" name="Product_id" value={{prdt.Product_id}}>
+<th>
+<input type="hidden" name="Product_id" value={{prdt.Product_id}}>
 
-          <input class="btn button" style="float: right;"  role="button" onclick='overlay()' type="submit" value="Bid now">
-      </th>
-  </tr>
+<input class="btn button" style="float: right;"  role="button" onclick='overlay()' type="submit" value="Bid now">
+</th>
+</tr>
 
 </table>
 </form>
