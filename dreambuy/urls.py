@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
     # #/dreambuy/id/
     url(r'^(?P<prdt_id>[0-9]+)/$',views.detail, name='detail'),
-    url(r'bid/(?P<prdt_id>[0-9]+)$',views.place_bid, name='place_bid'),
+    url(r'bid/(?P<prdt_id>\w+)$',views.place_bid, name='place_bid'),
     url(r'^Api_detail/$',views.Api_detail, name='Api_detail'),
     url(r'bid/view_url/',views.form_request_view, name='view_name'),
     url(r'user_bids/',views.user_bids, name='user_bids'),

@@ -94,7 +94,7 @@ def place_bid(request, prdt_id):
     else:
         if prdt_id:
             if request.method == "POST":
-                cur_prdt = Product.objects.get(id=prdt_id)
+                cur_prdt = Product.objects.get(Product_id=prdt_id)
                 cur_prdt_bid_price = cur_prdt.Product_each_bid_cost
                 cur_bids = cur_prdt.Product_bids
                 cur_palced = int(request.POST.get("quote_bids"))
@@ -216,7 +216,7 @@ def pymnt(request):
         print(response)
         prdt_id =int(response[0][:1])
         print('prdt_id',prdt_id)
-        cur_prdt = Product.objects.get(id=prdt_id)
+        cur_prdt = Product.objects.get(Product_id=prdt_id)
         cur_prdt_bid_price = cur_prdt.Product_each_bid_cost
         # cur_bids = cur_prdt.Product_bids
         cur_palced = int(response[0][2:3])
